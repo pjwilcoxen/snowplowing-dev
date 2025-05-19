@@ -1,0 +1,15 @@
+Table ID,UniqueID,Stub,Data Release
+B02001,,RACE,"1,5"
+B02001,,Universe:  Total population,
+B02001,B02001_001,Total:,
+B02001,B02001_002,White alone,
+,,,
+B25002,,OCCUPANCY STATUS,"1,5"
+B25002,,Universe:  Housing units,
+B25002,B25002_001,Total:,
+B25002,B25002_002,Occupied,
+B25002,B25002_003,Vacant,
+,,,
+B19013,,MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2018 INFLATION-ADJUSTED DOLLARS),"1,5"
+B19013,,Universe:  Households,
+B19013,B19013_001,Median household income in the past 12 months (in 2018 inflation-adjusted dollars),

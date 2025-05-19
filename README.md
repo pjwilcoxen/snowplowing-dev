@@ -1,1 +1,1 @@
-# snowplowing-dev
+# Snowplowing Equity in Syracuse

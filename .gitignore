@@ -1,3 +1,19 @@
+*.pkl
+*.zip
+*.dta
+*.dbf
+*.shp
+*.gpkg
+*.cpg
+*.prj
+*.shx
+*.log
+*.txt
+*.mmd
+*.svg 
+_old/
+_check.*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
