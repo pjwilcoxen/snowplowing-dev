@@ -1,0 +1,73 @@
+
+Base file:
+bg_variables_final.csv
+
+Rows:
+135
+
+Variables:
+[
+    "GEOID",
+    "SUM_res_sq_miles",
+    "SUM_sq_miles",
+    "city_miles",
+    "dangle_fraction",
+    "dangle_miles",
+    "mean_grade",
+    "pct_res",
+    "priority_fraction",
+    "priority_miles"
+]
+
+Demography file:
+demography.csv
+
+Rows:
+380
+
+Variables:
+[
+    "GEOID",
+    "med_inc",
+    "pop",
+    "shr_occ",
+    "shr_poc",
+    "units"
+]
+
+District file:
+bg_districts_final.csv
+
+BGs with districts:
+134
+
+Expected BG not in a district:
+360670132002
+
+BGs without districts:
+134    360670132002
+
+Variables written:
+[
+    "District",
+    "SUM_res_sq_miles",
+    "SUM_sq_miles",
+    "city_miles",
+    "dangle_fraction",
+    "dangle_miles",
+    "mean_grade",
+    "med_inc",
+    "pct_res",
+    "pop",
+    "priority_fraction",
+    "priority_miles",
+    "shr_occ",
+    "shr_poc",
+    "units"
+]
+
+Files written:
+[
+    "bg-merge.csv",
+    "bg-merge.pkl"
+]

@@ -1,0 +1,49 @@
+
+Plow point data:
+points-by-bg-hour.pkl
+
+BG data:
+bg-merge.pkl
+
+Output file:
+ppm-by-hour.pkl
+
+Block groups to drop:
+{
+    "360670036011": "Depot",
+    "360670132001": "Less than 0.1 miles",
+    "360670132002": "Not plowed"
+}
+
+Total records:
+15,599
+
+Block groups:
+134
+
+Events and hours:
+event
+1    97
+2    97
+3    73
+
+Total plow points:
+432,205
+
+Raw BG block groups:
+135
+
+Trimmed BG block groups:
+132
+
+Join of BGs onto points:
+_merge
+both          15323
+left_only         0
+right_only        0
+
+Join status:
+OK
+
+Saved PPM by hour data:
+ppm-by-hour.pkl

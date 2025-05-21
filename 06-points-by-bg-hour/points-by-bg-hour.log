@@ -1,0 +1,21 @@
+
+Point file:
+snowplow_trim.gpkg, layer=points
+
+Records found:
+439713
+
+Block group file:
+syracuse_bg.gpkg, layer=clipped
+
+Records found:
+135
+
+Joined records:
+432205
+
+Wrote output:
+points-by-bg-hour.csv
+
+Wrote output:
+points-by-bg-hour.pkl

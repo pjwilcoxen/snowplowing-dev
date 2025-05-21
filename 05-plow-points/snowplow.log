@@ -1,0 +1,68 @@
+
+Input file, event 2:
+Snowplow_Data_January_1_2018.csv
+
+Input file, event 2:
+Snowplow_Data_January_2_2018.csv
+
+Input file, event 2:
+Snowplow_Data_January_3_2018.csv
+
+Input file, event 2:
+Snowplow_Data_January_4_2018.csv
+
+Input file, event 3:
+Snowplow_Data_January_7_2018.csv
+
+Input file, event 3:
+Snowplow_Data_January_8_2018.csv
+
+Input file, event 3:
+Snowplow_Data_January_9_2018.csv
+
+Input file, event 1:
+Snowplow_Data_March_13_2017.csv
+
+Input file, event 1:
+Snowplow_Data_March_14_2017.csv
+
+Input file, event 1:
+Snowplow_Data_March_15_2017.csv
+
+Input file, event 1:
+Snowplow_Data_March_16_2017.csv
+
+Duplicates eliminated before dropping activity type:
+1
+
+Duplicates eliminated after dropping activity type:
+1420
+
+Duplicates eliminated after dropping idlers:
+27272
+
+Final number of records:
+439713
+
+Variables:
+[
+    "event",
+    "eventhr",
+    "hr_local",
+    "latitude",
+    "localday",
+    "localhr",
+    "longitude",
+    "truck_name",
+    "ts_local",
+    "ts_utc"
+]
+
+Output file:
+snowplow_trim.csv
+
+Output file:
+snowplow_trim.pkl
+
+Output file:
+snowplow_trim.gpkg
