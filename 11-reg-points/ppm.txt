@@ -1,0 +1,136 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\10-reg-points\ppm.txt
+  log type:  text
+ opened on:  19 May 2025, 16:39:43
+
+. write_graph setup ana png noemf
+
+. 
+. use sp_syracuse
+
+. 
+. gen med_inc_100k = med_inc_1k/100
+(5 missing values generated)
+
+. 
+. spmatrix create contiguity C, replace
+
+. spmatrix create idistance D, replace
+
+. 
+. local phys priority_fraction mean_grade dangle_fraction
+
+. local demo med_inc_100k shr_poc
+
+. 
+. reg ppm `phys' `demo' pct_res
+
+      Source |       SS           df       MS      Number of obs   =       127
+-------------+----------------------------------   F(6, 120)       =      5.07
+       Model |  319642.621         6  53273.7702   Prob > F        =    0.0001
+    Residual |  1261555.02       120  10512.9585   R-squared       =    0.2022
+-------------+----------------------------------   Adj R-squared   =    0.1623
+       Total |  1581197.64       126  12549.1876   Root MSE        =    102.53
+
+-----------------------------------------------------------------------------------
+              ppm |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+priority_fraction |   264.3275   75.82061     3.49   0.001      114.208     414.447
+       mean_grade |   22.80877   8.030778     2.84   0.005     6.908386    38.70915
+  dangle_fraction |    217.447    161.058     1.35   0.180    -101.4367    536.3306
+     med_inc_100k |  -125.2627   54.84361    -2.28   0.024    -233.8492   -16.67613
+          shr_poc |  -39.56814   45.94152    -0.86   0.391    -130.5291    51.39286
+          pct_res |   .6332696   .4233387     1.50   0.137    -.2049116    1.471451
+            _cons |   221.8842    54.1765     4.10   0.000     114.6185    329.1499
+-----------------------------------------------------------------------------------
+
+. estimates store r2v2
+
+. 
+. spregress ppm `phys' `demo' pct_res, dvarlag(C) ml force
+  (132 observations)
+  (5 observations excluded due to missing values)
+  (127 observations (places) used)
+  (weighting matrix defines 132 places)
+  (you specified -force-)
+  (weighting matrix matched 127 places in data)
+  (weighting matrix C_s001 created)
+
+Performing grid search ... finished 
+
+Optimizing concentrated log likelihood:
+
+Iteration 0:   log likelihood = -763.24357  
+Iteration 1:   log likelihood = -763.08046  
+Iteration 2:   log likelihood = -763.08046  
+
+Optimizing unconcentrated log likelihood:
+
+Iteration 0:   log likelihood = -763.08046  
+Iteration 1:   log likelihood = -763.08046  (backed up)
+
+Spatial autoregressive model                    Number of obs     =        127
+Maximum likelihood estimates                    Wald chi2(7)      =      36.26
+                                                Prob > chi2       =     0.0000
+Log likelihood = -763.08046                     Pseudo R2         =     0.1958
+
+-----------------------------------------------------------------------------------
+              ppm |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+------------------+----------------------------------------------------------------
+ppm               |
+priority_fraction |   274.7598   72.92526     3.77   0.000     131.8289    417.6907
+       mean_grade |   21.85863   7.717629     2.83   0.005     6.732354     36.9849
+  dangle_fraction |   275.4895    157.801     1.75   0.081    -33.79476    584.7738
+     med_inc_100k |  -139.4024   53.17371    -2.62   0.009     -243.621   -35.18384
+          shr_poc |  -52.26687   44.61659    -1.17   0.241    -139.7138    35.18004
+          pct_res |   .8568474   .4247802     2.02   0.044     .0242935    1.689401
+            _cons |   174.8471   58.25218     3.00   0.003     60.67497    289.0193
+------------------+----------------------------------------------------------------
+C_s001            |
+              ppm |   .1515426   .0849702     1.78   0.075     -.014996    .3180812
+------------------+----------------------------------------------------------------
+        var(e.ppm)|   9662.804   1213.081                      7555.135    12358.45
+-----------------------------------------------------------------------------------
+Wald test of spatial terms:          chi2(1) = 3.18       Prob > chi2 = 0.0745
+
+. estimates store r2v2_C
+
+. 
+. estimates table r2v2 r2v2_C, star stats(N ll bic)
+
+----------------------------------------------
+    Variable |     r2v2           r2v2_C      
+-------------+--------------------------------
+_            |
+priority_f~n |  264.32749***                  
+  mean_grade |  22.808766**                   
+dangle_fra~n |  217.44695                     
+med_inc_100k | -125.26267*                    
+     shr_poc | -39.568144                     
+     pct_res |  .63326956                     
+       _cons |  221.88421***                  
+-------------+--------------------------------
+ppm          |
+priority_f~n |                  274.75981***  
+  mean_grade |                  21.858629**   
+dangle_fra~n |                  275.48953     
+med_inc_100k |                  -139.4024**   
+     shr_poc |                 -52.266868     
+     pct_res |                  .85684743*    
+       _cons |                  174.84715**   
+-------------+--------------------------------
+C_s001       |
+         ppm |                  .15154262     
+-------------+--------------------------------
+   var(e.ppm)|                  9662.8035***  
+-------------+--------------------------------
+Statistics   |                                
+           N |        127             127     
+          ll | -764.63815      -763.08046     
+         bic |  1563.1856       1569.7586     
+----------------------------------------------
+      legend: * p<0.05; ** p<0.01; *** p<0.001
+
+. 
+end of do-file

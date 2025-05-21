@@ -7,11 +7,11 @@
 *.cpg
 *.prj
 *.shx
-*.txt
 *.mmd
 *.svg 
 _old/
 _check.*
+.snaplinks.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

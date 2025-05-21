@@ -1,0 +1,121 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial\sp_syracuse.txt
+  log type:  text
+ opened on:  19 May 2025, 16:35:13
+
+. write_graph setup png noemf
+H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+
+. 
+. // inputs:
+. //    syracuse.shp
+. //    syracuse.dbf
+. //
+. // outputs:
+. //    sp_syracuse.dta
+. //    sp_syracuse_shp.dta
+. //
+. // unzip the shapefile into subdirectory raw and then 
+. // point the shp and dbf links at the appropriate files
+. //
+. 
+. spshape2dta syracuse, replace saving(sp_syracuse)
+  (importing .shp file)
+  (importing .dbf file)
+  (creating _ID spatial-unit id)
+  (creating _CX coordinate)
+  (creating _CY coordinate)
+
+  file sp_syracuse_shp.dta created
+  file sp_syracuse.dta     created
+
+. 
+. use sp_syracuse_shp
+
+. summarize
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         _ID |      6,942    63.07707    37.90509          1        133
+          _X |      6,809    406892.2    2102.368   401936.2   412504.7
+          _Y |      6,809     4766047    2378.255    4759733    4771032
+  rec_header |          0
+ shape_order |      6,942    32.81835    26.12041          1        184
+
+. 
+. //  replace old variables with the latest versions in the PPM dataset
+. 
+. use sp_syracuse
+
+. 
+. keep _ID _CX _CY GEOID
+
+. 
+. merge 1:1 GEOID using ppm_by_bg
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             1
+        from master                         1  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               132  (_merge==3)
+    -----------------------------------------
+
+. 
+. drop if _merge == 1
+(1 observation deleted)
+
+. tab _merge 
+
+                 _merge |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+            matched (3) |        132      100.00      100.00
+------------------------+-----------------------------------
+                  Total |        132      100.00
+
+. drop _merge 
+
+. 
+. // build a couple of new variables
+. 
+. gen med_inc_1k  = round(med_inc/1e3)
+(5 missing values generated)
+
+. // gen mean_all_1k = round(mean_tav_a/1e3)
+. // gen mean_res_1k = round(mean_tav_r/1e3)
+. 
+. // update the sp dataset 
+. 
+. save sp_syracuse, replace 
+file sp_syracuse.dta saved
+
+. 
+. // draw some maps
+. 
+. foreach v in priority_f shr_poc shr_occ med_inc_1k ///
+>              pct_res grade ppm d50 District {
+  2.     grmap `v', name("`v'")
+  3.     write_graph "`v'"
+  4. }
+H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+Saving figs/f_priority_f.png
+(file figs/f_priority_f.png written in PNG format)
+H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+Saving figs/f_shr_poc.png
+(file figs/f_shr_poc.png written in PNG format)
+H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+Saving figs/f_shr_occ.png
+(file figs/f_shr_occ.png written in PNG format)
+H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+Saving figs/f_med_inc_1k.png
+(file figs/f_med_inc_1k.png written in PNG format)
+H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+Saving figs/f_pct_res.png
+(file figs/f_pct_res.png written in PNG format)
+variable grade not found
+r(111);
+
+end of do-file
+r(111);
