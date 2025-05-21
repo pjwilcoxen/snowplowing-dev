@@ -14,7 +14,7 @@
 
 ### Geoprocessing Tools
 
-To prepare the original snowplow districts layer (`SnowPlowDistricts_Final_120618.zip`), we put it into a coordinate system suitable for local spatial analysis using Project (Data Management Tools).[^1]  Then we aggregated the parts of the districts at the district level using Dissolve (Data Management Tools).
+To prepare the original snowplow districts layer (`SnowPlowDistricts_Final_120618.zip`), we put it into a coordinate system suitable for local spatial analysis using Project (Data Management Tools)[^1].  Then we aggregated the parts of the districts at the district level using Dissolve (Data Management Tools).
 
 We prepared the source block group layer by selecting Syracuse from `tl_2018_36_place.zip` and using the output layer to clip `tl_2018_36_bg.zip`. We projected the Syracuse block group layer in same coordinate system as the snowplow districts layer. There are 135 records in the Syracuse block group layer.
 
@@ -137,12 +137,12 @@ TBD
 
 ## Footnotes
 
-[^1] We chose the State Plane Coordinate System for central New York: NAD_1983_2011_StatePlane_New_York_Central_FIPS_3102_Ft_US.
+[^1]: We chose the State Plane Coordinate System for central New York: NAD_1983_2011_StatePlane_New_York_Central_FIPS_3102_Ft_US.
 
-[^2] One block group (of 135) does not intersect any snowplow district, so it received null for District. The block group GEOID = 360670132002 is a water supply facility on the western edge of the city.
+[^2]: One block group (of 135) does not intersect any snowplow district, so it received null for District. The block group GEOID = 360670132002 is a water supply facility on the western edge of the city.
 
-[^3] For accuracy calculating distance, we chose the State Plane Coordinate System for central New York: NAD_1983_2011_StatePlane_New_York_Central_FIPS_3102_Ft_US.
+[^3]: For accuracy calculating distance, we chose the State Plane Coordinate System for central New York: NAD_1983_2011_StatePlane_New_York_Central_FIPS_3102_Ft_US.
 
-[^4] The DEMs generally show the elevation values of the topography underneath bridges. As such, the bare earth data at bridge locations is not useful for determining bridge grade, which is typically less than the grade of the substructure embankment. Using the NYS Department of Transportation inventory of bridges, we located street segments that have suspected false elevation values and excluded them from the analysis.
+[^4]: The DEMs generally show the elevation values of the topography underneath bridges. As such, the bare earth data at bridge locations is not useful for determining bridge grade, which is typically less than the grade of the substructure embankment. Using the NYS Department of Transportation inventory of bridges, we located street segments that have suspected false elevation values and excluded them from the analysis.
 
-[^5] A dangle is a point at one end of a line that is not connected to another line. Where lines represent streets, dangles represent dead ends.
+[^5]: A dangle is a point at one end of a line that is not connected to another line. Where lines represent streets, dangles represent dead ends.
