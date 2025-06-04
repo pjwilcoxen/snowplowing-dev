@@ -56,15 +56,15 @@ The total mileage of Syracuse City priority streets by block group.
 
 3. We eliminated duplicate shapes and segment IDs with Delete Identical (Data Management Tools), reducing the records to 2,488 priority street segments.
 
-4. In the priority streets layer, we created the field miles and used Calculate Geometry to add length information (in miles) to each priority street segment.
+4. In the priority streets layer, we created the field `miles` and used Calculate Geometry to add length information (in miles) to each priority street segment.
 
 5. We prepared the source block group layer by selecting Syracuse from `tl_2018_36_place.zip` and using the output layer to `clip tl_2018_36_bg.zip`. We projected the Syracuse block group layer in same coordinate system as the priority streets layer. There are 135 records in the Syracuse block group layer.
 
 6. We used the clipped and projected block group layer in conjunction with the priority streets layer, and, with Tabulate Intersection (Analysis Tools), we summed up the mileage of priority street segments for each block group. There are 132 records in the output table.
 
-7. We created the field `priority_miles` in the block group attributes. We joined the miles field from the Tabulate Intersection output table to the block group layer based on `GEOID`. Three records in the block group layer were null for miles. We selected miles is null and calculated the selected records miles = 0. Then we used the miles values to populate `priority_miles`, and we deleted the field miles.
+7. We created the field `priority_miles` in the block group attributes. We joined the `miles` field from the Tabulate Intersection output table to the block group layer based on `GEOID`. Three records in the block group layer were null for `miles`. We selected `miles` is null and calculated the selected records `miles = 0`. Then we used the `miles` values to populate `priority_miles`, and we deleted the field `miles`.
 
-#### city_miles
+#### `city_miles`
 
 The total mileage of Syracuse City streets by block group.
 
@@ -78,41 +78,41 @@ The total mileage of Syracuse City streets by block group.
 
 5. Then we ran the Tabulate Intersection tool on the block group layer and the street layer in order to sum up the mileage of street segments for each block group.
 
-6. We created the field city_miles in the block group attributes. We joined the miles field from the Tabulate Intersection output table to the block group layer based on `GEOID`. Then we used the miles values to calculate city_miles, and we deleted the field miles.
+6. We created the field `city_miles` in the block group attributes. We joined the `miles` field from the Tabulate Intersection output table to the block group layer based on `GEOID`. Then we used the `miles` values to calculate `city_miles`, and we deleted the field `miles`.
 
-#### priority_fraction
+#### `priority_fraction`
 
-The fraction of the city street miles that are priority by block group. We created a new field in the block group layer called priority_fraction. This field is calculated as `priority_miles` / `city_miles`.
+The fraction of the city street miles that are priority by block group. We created a new field in the block group layer called `priority_fraction`. This field is calculated as `priority_miles` / `city_miles`.
 
-#### SUM_res_sq_miles
+#### `SUM_res_sq_miles`
 
 The sum of residential parcel area (square miles) by block group.
 
 1. We projected `Parcel_Map_Q1_2020.zip` into the same coordinate system as the Syracuse block group layer.
 
-2. We ran Spatial Join (Analysis Tools), Match Option “Have their center in,” on parcels (target features) and block groups (join features), joining block groups attributes to parcel shapes.
+2. We ran Spatial Join (Analysis Tools), Match Option Have their center in, on parcels (target features) and block groups (join features), joining block group attributes to parcel shapes.
 
 3. We added the field `res_sq_miles` to the attributes of the joined layer. We selected the residential properties, 200 class parcels (210-281) and used Calculate Geometry to get the area in square miles for the field res_sq_miles.
 
-4. We used Summary Statistics (Analysis Tools) on the joined layer and summed up the `res_sq_miles` field by block group GEOID.
+4. We used Summary Statistics (Analysis Tools) on the joined layer and summed up the `res_sq_miles` field by block group `GEOID`.
 
 5. Then we joined the `SUM_res_sq_miles` field from the statistics table to the block group layer. We selected `SUM_res_sq_miles` is null and calculated the selected records as 0.
 
-#### SUM_sq_miles
+#### `SUM_sq_miles`
 
 The sum of parcel area (square miles) by block group.
 
 1. We added the field `sq_miles` to the attributes of the joined parcel and block group layer. We used Calculate Geometry to get the area in square miles for the field `sq_miles`.
 
-2. We used Summary Statistics on the joined layer and summed up the sq_miles field by block group `GEOID`.
+2. We used Summary Statistics on the joined layer and summed up the `sq_miles` field by block group `GEOID`.
 
 3. Then we joined the `SUM_sq_miles` field from the statistics table to the block group layer.
 
-#### pct_res
+#### `pct_res`
 
-The percentage of parcel area that is residential by block group. We created the field pct_res in the block group attributes and calculated `pct_res` = `SUM_res_sq_miles` / `SUM_sq_miles` * 100.
+The percentage of parcel area that is residential by block group. We created the field `pct_res` in the block group attributes and calculated `pct_res` = `SUM_res_sq_miles` / `SUM_sq_miles` * 100.
 
-#### mean_grade
+#### `mean_grade`
 
 The mean grade of the Syracuse City streets by block group.
 
@@ -128,13 +128,13 @@ The mean grade of the Syracuse City streets by block group.
 
 6. We used Near (Analysis Tools) to find the closest bridge to street segments within a search radius of 30 ft. The result is that intersecting segments near bridge locations frequently share the same bridge attributes.
 
-7. In order to differentiate street segments that are carried by a bridge from ones that cross a bridge, we created the field carry_cross in the street attribute table, manually selected each unique bridge ID, and classified the affiliated street segments as either carried or crossed.
+7. In order to differentiate street segments that are carried by a bridge from ones that cross a bridge, we created the field `carry_cross` in the street attribute table, manually selected each unique bridge ID, and classified the affiliated street segments as either carried or crossed.
 
 8. In the street attributes table, we created the field `false_grade` and flagged the following street segments: carried streets with grades greater than 6; crossed streets with grades greater than 10; and unclassified streets (not within 30ft of a bridge) with grades greater than 20.
 
 9. In the street attributes table, we selected `false_grade` is null. Then we ran Summarize Within (Analysis Tools) using the block group layer for polygons and the selected street segments (6,646) for summary features. We chose the field `grade` and set the statistic type as mean. This created the `mean_grade` field in the block group attribute table.
 
-#### dangle_miles
+#### `dangle_miles`
 
 The total mileage of dead-end street segments by block group.
 
@@ -146,9 +146,9 @@ The total mileage of dead-end street segments by block group.
 
 4. We transferred the `DANGLE_LEN` field from the tabulate intersection table to the block group attributes using Join Field. Null values for `DANGLE_LEN` were calculated as 0.
 
-5. We created the field dangle_miles in the block group attributes and populated it: `dangle_miles` = `DANGLE_LEN` / 5280.
+5. We created the field `dangle_miles` in the block group attributes and populated it: `dangle_miles` = `DANGLE_LEN` / 5280.
 
-#### dangle_fraction
+#### `dangle_fraction`
 
 The fraction of city street miles that are dead ends by block group. `dangle_fraction` = `dangle_miles` / `city_miles`.
 
