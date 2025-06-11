@@ -62,7 +62,7 @@ The total mileage of Syracuse City priority streets by block group.
 
 6. We used the clipped and projected block group layer in conjunction with the priority streets layer, and, with Tabulate Intersection (Analysis Tools), we summed up the mileage of priority street segments for each block group. There are 132 records in the output table.
 
-7. We created the field `priority_miles` in the block group attributes. We joined the `miles` field from the Tabulate Intersection output table to the block group layer based on `GEOID`. Three records in the block group layer were null for `miles`. We selected `miles` is null and calculated the selected records `miles = 0`. Then we used the `miles` values to populate `priority_miles`, and we deleted the field `miles`.
+7. We created the field `priority_miles` in the block group attributes. We joined the `miles` field from the Tabulate Intersection output table to the block group layer based on `GEOID`. Three records in the block group layer were null for `miles`. We selected `miles` is null and calculated the selected records `miles` = 0. Then we used the `miles` values to populate `priority_miles`, and we deleted the field `miles`.
 
 #### `city_miles`
 
@@ -74,7 +74,7 @@ The total mileage of Syracuse City streets by block group.
 
 3. `Syracuse_Streeets_2016.zip` contains interstate highways, for which the city snow removal fleet is not responsible. We selected highway number 481 or 81 or 690 and used Delete Features (Data Management Tools), further reducing the number of records to 6,764.
 
-4. In the edited streets layer, we created the field miles and used Calculate Geometry to add length information (in miles) to each street segment.
+4. In the edited streets layer, we created the field `miles` and used Calculate Geometry to add length information (in miles) to each street segment.
 
 5. Then we ran the Tabulate Intersection tool on the block group layer and the street layer in order to sum up the mileage of street segments for each block group.
 
@@ -92,7 +92,7 @@ The sum of residential parcel area (square miles) by block group.
 
 2. We ran Spatial Join (Analysis Tools), Match Option Have their center in, on parcels (target features) and block groups (join features), joining block group attributes to parcel shapes.
 
-3. We added the field `res_sq_miles` to the attributes of the joined layer. We selected the residential properties, 200 class parcels (210-281) and used Calculate Geometry to get the area in square miles for the field res_sq_miles.
+3. We added the field `res_sq_miles` to the attributes of the joined layer. We selected the residential properties, 200 class parcels (210-281) and used Calculate Geometry to get the area in square miles for the field `res_sq_miles`.
 
 4. We used Summary Statistics (Analysis Tools) on the joined layer and summed up the `res_sq_miles` field by block group `GEOID`.
 
@@ -118,7 +118,7 @@ The mean grade of the Syracuse City streets by block group.
 
 1. We used Create Mosaic Dataset and Add Rasters To Mosaic Dataset (Data Management Tools) to combine the elevation raster tiles (`USGS_13_n43w077_20230227.tif` and `USGS_13_n44w077_20230227.tif`).
 
-2. We ran Zonal Statistics as Table (Spatial Analyst Tools) with our streets layer as zones and the raster mosaic as the value input to get a table of minimum and maximum elevation values (fields MIN and MAX) for each street segment. The vertical units in the source rasters are meters.
+2. We ran Zonal Statistics as Table (Spatial Analyst Tools) with our streets layer as zones and the raster mosaic as the value input to get a table of minimum and maximum elevation values (fields `MIN` and `MAX`) for each street segment. The vertical units in the source rasters are meters.
 
 3. We created three fields in the zonal statistics output table: `min_ft` (`min_ft` = `MIN` * 3.28084), `max_ft` (`max_ft` = `MAX` * 3.28084), and `elev_diff_ft` (`elev_diff_ft` = `max_ft` – `min_ft`).
 
@@ -154,7 +154,7 @@ The fraction of city street miles that are dead ends by block group. `dangle_fra
 
 [^1]: We chose the State Plane Coordinate System for central New York: NAD_1983_2011_StatePlane_New_York_Central_FIPS_3102_Ft_US.
 
-[^2]: One block group (of 135) does not intersect any snowplow district, so it received null for District. The block group `GEOID` = 360670132002 is a water supply facility on the western edge of the city.
+[^2]: One block group (of 135) does not intersect any snowplow district, so it received null for `District`. The block group `GEOID` = 360670132002 is a water supply facility on the western edge of the city.
 
 [^3]: For accuracy calculating distance, we chose the State Plane Coordinate System for central New York: NAD_1983_2011_StatePlane_New_York_Central_FIPS_3102_Ft_US.
 
