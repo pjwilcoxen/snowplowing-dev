@@ -32,17 +32,17 @@ Running c:\ado\personal\profile.do ...
 . write_log sp_syracuse
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial\sp_syracuse.txt
+       log:  H:\dropbox\wilcoxen\wk\syracuse\36-pub\dev\10-build-spatial\sp_syracuse.txt
   log type:  text
- opened on:  19 May 2025, 16:35:13
+ opened on:  19 Jun 2025, 13:48:04
 
 . write_graph setup png noemf
-H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+H:\dropbox\wilcoxen\wk\syracuse\36-pub\dev\10-build-spatial
 
 . 
 . // inputs:
-. //    syracuse.shp
-. //    syracuse.dbf
+. //    syracuse_bg.shp
+. //    syracuse_bg.dbf
 . //
 . // outputs:
 . //    sp_syracuse.dta
@@ -52,7 +52,7 @@ H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
 . // point the shp and dbf links at the appropriate files
 . //
 . 
-. spshape2dta syracuse, replace saving(sp_syracuse)
+. spshape2dta syracuse_bg, replace saving(sp_syracuse)
   (importing .shp file)
   (importing .dbf file)
   (creating _ID spatial-unit id)
@@ -131,19 +131,19 @@ file sp_syracuse.dta saved
   2.     grmap `v', name("`v'")
   3.     write_graph "`v'"
   4. }
-H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+H:\dropbox\wilcoxen\wk\syracuse\36-pub\dev\10-build-spatial
 Saving figs/f_priority_f.png
 (file figs/f_priority_f.png written in PNG format)
-H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+H:\dropbox\wilcoxen\wk\syracuse\36-pub\dev\10-build-spatial
 Saving figs/f_shr_poc.png
 (file figs/f_shr_poc.png written in PNG format)
-H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+H:\dropbox\wilcoxen\wk\syracuse\36-pub\dev\10-build-spatial
 Saving figs/f_shr_occ.png
 (file figs/f_shr_occ.png written in PNG format)
-H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+H:\dropbox\wilcoxen\wk\syracuse\36-pub\dev\10-build-spatial
 Saving figs/f_med_inc_1k.png
 (file figs/f_med_inc_1k.png written in PNG format)
-H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\09-build-spatial
+H:\dropbox\wilcoxen\wk\syracuse\36-pub\dev\10-build-spatial
 Saving figs/f_pct_res.png
 (file figs/f_pct_res.png written in PNG format)
 variable grade not found

@@ -5,8 +5,8 @@ write_log sp_syracuse
 write_graph setup png noemf
 
 // inputs:
-//    syracuse.shp
-//    syracuse.dbf
+//    syracuse_bg.shp
+//    syracuse_bg.dbf
 //
 // outputs:
 //    sp_syracuse.dta
@@ -16,7 +16,7 @@ write_graph setup png noemf
 // point the shp and dbf links at the appropriate files
 //
 
-spshape2dta syracuse, replace saving(sp_syracuse)
+spshape2dta syracuse_bg, replace saving(sp_syracuse)
 
 use sp_syracuse_shp
 summarize
