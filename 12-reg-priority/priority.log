@@ -32,12 +32,12 @@ Running c:\ado\personal\profile.do ...
 . set linesize 255 
 
 . 
-. write_log combined
+. write_log priority
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  H:\dropbox\wilcoxen\wk\syracuse\35-rebuild-v2\11-reg-priority\combined.txt
+       log:  H:\dropbox\wilcoxen\wk\syracuse\36-pub\dev\12-reg-priority\priority.txt
   log type:  text
- opened on:  19 May 2025, 16:40:18
+ opened on:  19 Jun 2025, 14:00:25
 
 . 
 . use sp_syracuse

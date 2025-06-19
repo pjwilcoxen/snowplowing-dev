@@ -3,7 +3,7 @@ discard
 estimates clear 
 set linesize 255 
 
-write_log combined
+write_log priority
 
 use sp_syracuse
 
