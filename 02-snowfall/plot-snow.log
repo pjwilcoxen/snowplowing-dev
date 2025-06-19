@@ -1,0 +1,35 @@
+
+Hourly data:
+hourly-2017-03.csv
+
+Daily data:
+noaa-data-us-units.csv
+
+Day range:
+2017-03-13 to 2017-03-16
+
+Daily precipitation, inchces of water:
+DATE
+2017-03-13    0.00
+2017-03-14    0.96
+2017-03-15    0.20
+2017-03-16    0.00
+
+Daily precipitation, inches of snow:
+DATE
+2017-03-13     0.0
+2017-03-14    18.9
+2017-03-15     5.5
+2017-03-16     0.0
+
+Conversion, water to snow:
+21.03448275862069
+
+Hour for 0.25 cutoff:
+34
+
+Hour for 0.5 cutoff:
+39
+
+Hour for 0.75 cutoff:
+45
