@@ -3,10 +3,10 @@ PPM by hour file:
 ppm-by-hour.pkl
 
 CSV output file:
-ppm-by-bg.csv
+ppm_by_bg.csv
 
 DTA output file:
-ppm-by-bg.dta
+ppm_by_bg.dta
 
 Event to keep:
 1
@@ -282,6 +282,6 @@ early
 
 Wrote output files:
 [
-    "ppm-by-bg.csv",
-    "ppm-by-bg.dta"
+    "ppm_by_bg.csv",
+    "ppm_by_bg.dta"
 ]

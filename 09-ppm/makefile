@@ -1,8 +1,8 @@
-_check.log : _check.py ppm-by-bg.dta
+_check.log : _check.py ppm_by_bg.dta
 	python3 _check.py
 
-ppm-by-bg.dta : ppm-by-bg.py ppm-by-hour.pkl
-	python3 ppm-by-bg.py
+ppm_by_bg.dta : ppm_by_bg.py ppm-by-hour.pkl
+	python3 ppm_by_bg.py
 
 ppm-by-hour.pkl : ppm-by-hour.py bg-merge.pkl points-by-bg-hour.pkl
 	python3 ppm-by-hour.py

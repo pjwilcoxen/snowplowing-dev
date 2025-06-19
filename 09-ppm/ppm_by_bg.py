@@ -10,7 +10,7 @@ import quicklog
 import matplotlib.pyplot as plt
 
 pd.options.mode.copy_on_write = True
-stem = 'ppm-by-bg'
+stem = 'ppm_by_bg'
 
 ql = quicklog.logger(f'{stem}.log')
 
