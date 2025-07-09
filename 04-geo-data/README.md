@@ -84,6 +84,28 @@ The total mileage of Syracuse City streets by block group.
 
 The fraction of the city street miles that are priority by block group. We created a new field in the block group layer called `priority_fraction`. This field is calculated as `priority_miles` / `city_miles`.
 
+#### `mean_grade`
+
+The mean grade of the Syracuse City streets by block group.
+
+1. We used Create Mosaic Dataset and Add Rasters To Mosaic Dataset (Data Management Tools) to combine the elevation raster tiles (`USGS_13_n43w077_20230227.tif` and `USGS_13_n44w077_20230227.tif`).
+
+2. We ran Zonal Statistics as Table (Spatial Analyst Tools) with our streets layer as zones and the raster mosaic as the value input to get a table of minimum and maximum elevation values (fields `MIN` and `MAX`) for each street segment. The vertical units in the source rasters are meters.
+
+3. We created three fields in the zonal statistics output table: `min_ft` (`min_ft` = `MIN` * 3.28084), `max_ft` (`max_ft` = `MAX` * 3.28084), and `elev_diff_ft` (`elev_diff_ft` = `max_ft` – `min_ft`).
+
+4. We added the field `run_ft` to the street attributes and calculated the length of the segments in feet. Then we added and calculated `grade` (`grade` = `elev_diff_ft` / `run_ft` * 100).[^4]
+
+5. We projected the bridge inventory file (`VW_BRIDGES.gdb`) into the same coordinate system as the street file.
+
+6. We used Near (Analysis Tools) to find the closest bridge to street segments within a search radius of 30 ft. The result is that intersecting segments near bridge locations frequently share the same bridge attributes.
+
+7. In order to differentiate street segments that are carried by a bridge from ones that cross a bridge, we created the field `carry_cross` in the street attribute table, manually selected each unique bridge ID, and classified the affiliated street segments as either carried or crossed.
+
+8. In the street attributes table, we created the field `false_grade` and flagged the following street segments: carried streets with grades greater than 6; crossed streets with grades greater than 10; and unclassified streets (not within 30ft of a bridge) with grades greater than 20.
+
+9. In the street attributes table, we selected `false_grade` is null. Then we ran Summarize Within (Analysis Tools) using the block group layer for polygons and the selected street segments (6,646) for summary features. We chose the field `grade` and set the statistic type as mean. This created the `mean_grade` field in the block group attribute table.
+
 #### `SUM_res_sq_miles`
 
 The sum of residential parcel area (square miles) by block group.
@@ -111,28 +133,6 @@ The sum of parcel area (square miles) by block group.
 #### `pct_res`
 
 The percentage of parcel area that is residential by block group. We created the field `pct_res` in the block group attributes and calculated `pct_res` = `SUM_res_sq_miles` / `SUM_sq_miles` * 100.
-
-#### `mean_grade`
-
-The mean grade of the Syracuse City streets by block group.
-
-1. We used Create Mosaic Dataset and Add Rasters To Mosaic Dataset (Data Management Tools) to combine the elevation raster tiles (`USGS_13_n43w077_20230227.tif` and `USGS_13_n44w077_20230227.tif`).
-
-2. We ran Zonal Statistics as Table (Spatial Analyst Tools) with our streets layer as zones and the raster mosaic as the value input to get a table of minimum and maximum elevation values (fields `MIN` and `MAX`) for each street segment. The vertical units in the source rasters are meters.
-
-3. We created three fields in the zonal statistics output table: `min_ft` (`min_ft` = `MIN` * 3.28084), `max_ft` (`max_ft` = `MAX` * 3.28084), and `elev_diff_ft` (`elev_diff_ft` = `max_ft` – `min_ft`).
-
-4. We added the field `run_ft` to the street attributes and calculated the length of the segments in feet. Then we added and calculated `grade` (`grade` = `elev_diff_ft` / `run_ft` * 100).[^4]
-
-5. We projected the bridge inventory file (`VW_BRIDGES.gdb`) into the same coordinate system as the street file.
-
-6. We used Near (Analysis Tools) to find the closest bridge to street segments within a search radius of 30 ft. The result is that intersecting segments near bridge locations frequently share the same bridge attributes.
-
-7. In order to differentiate street segments that are carried by a bridge from ones that cross a bridge, we created the field `carry_cross` in the street attribute table, manually selected each unique bridge ID, and classified the affiliated street segments as either carried or crossed.
-
-8. In the street attributes table, we created the field `false_grade` and flagged the following street segments: carried streets with grades greater than 6; crossed streets with grades greater than 10; and unclassified streets (not within 30ft of a bridge) with grades greater than 20.
-
-9. In the street attributes table, we selected `false_grade` is null. Then we ran Summarize Within (Analysis Tools) using the block group layer for polygons and the selected street segments (6,646) for summary features. We chose the field `grade` and set the statistic type as mean. This created the `mean_grade` field in the block group attribute table.
 
 #### `dangle_miles`
 
