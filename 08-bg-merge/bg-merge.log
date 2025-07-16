@@ -71,3 +71,9 @@ Files written:
     "bg-merge.csv",
     "bg-merge.pkl"
 ]
+
+Demographic summary:
+         count   mean    50%    std   min    max
+pop        135   1078    973    613   276   5686
+shr_poc    135     46     48     25     1     99
+med_inc    130  41646  37022  21968  8460  99667

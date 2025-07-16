@@ -88,3 +88,15 @@ bginfo.to_pickle(outpkl)
 ql.log('Variables written',sorted(bginfo.columns),json=True)
 
 ql.log('Files written',[outcsv,outpkl],json=True)
+
+#%%
+#
+#  Tabluate demographic data for the table in the paper
+#
+
+demo_sum = bginfo[['pop','shr_poc','med_inc']].copy()
+demo_sum['shr_poc'] = 100*demo_sum['shr_poc']
+demo_sum = demo_sum.describe().T
+demo_sum = demo_sum[['count','mean','50%','std','min','max']].round().astype(int)
+
+ql.log('Demographic summary',demo_sum)
