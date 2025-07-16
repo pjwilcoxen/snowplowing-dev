@@ -8,10 +8,13 @@
 import requests
 import pandas as pd
 import os
+from quicklog import logger
 
 #
 #  Configure the run
 #
+
+ql = logger('census-acs.log')
 
 ifile = 'input-variables.csv'
 ofile = "demography.csv"
@@ -20,6 +23,9 @@ acs_yr = 2019
 geo = 'bgs'
 state_fips = '36'
 county_fips = '067'
+
+ql.log('Input file',ifile)
+ql.log('ACS year',acs_yr)
 
 #
 #  Make a subdirectory for individual tables
@@ -41,6 +47,8 @@ var_info = pd.read_csv(ifile)
 var_info = var_info.dropna(subset=['UniqueID'])
 var_info['table'] = var_info['Table ID']
 var_info['variable'] = var_info['UniqueID']+'E'
+
+ql.log('Variable information',var_info)
 
 for_clause = 'block group:*'
     
@@ -130,6 +138,7 @@ for table,table_info in grps:
         fname = f'raw/{table.lower()}-{geo}.csv'
         data.to_csv(fname)
         files.append( fname )
+        ql.log('Wrote file',fname)
  
 #
 #  Now read the files we just built and combine them into one
@@ -173,5 +182,7 @@ sel['geoid'] = merged['geoid']
 res = sel[['geoid', 'pop', 'units', 'med_inc']].copy()
 res['shr_poc'] = (1-sel['pop_white']/sel['pop']).round(4)
 res['shr_occ'] = (sel['units_occ']/sel['units']).round(4)
+
+ql.log('Summary',res.describe())
 
 res.to_csv(ofile, index=False)

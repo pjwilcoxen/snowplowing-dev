@@ -1,0 +1,35 @@
+
+Input file:
+input-variables.csv
+
+ACS year:
+2019
+
+Variable information:
+   Table ID    UniqueID                                                                                Stub Data Release   table     variable
+2    B02001  B02001_001                                                                              Total:          NaN  B02001  B02001_001E
+3    B02001  B02001_002                                                                         White alone          NaN  B02001  B02001_002E
+7    B25002  B25002_001                                                                              Total:          NaN  B25002  B25002_001E
+8    B25002  B25002_002                                                                            Occupied          NaN  B25002  B25002_002E
+9    B25002  B25002_003                                                                              Vacant          NaN  B25002  B25002_003E
+13   B19013  B19013_001  Median household income in the past 12 months (in 2018 inflation-adjusted dollars)          NaN  B19013  B19013_001E
+
+Wrote file:
+raw/b02001-bgs.csv
+
+Wrote file:
+raw/b19013-bgs.csv
+
+Wrote file:
+raw/b25002-bgs.csv
+
+Summary:
+               pop        units        med_inc     shr_poc     shr_occ
+count   380.000000   380.000000     372.000000  380.000000  380.000000
+mean   1218.084211   548.357895   64737.916667    0.224228    0.885724
+std     555.188526   211.276878   29771.508676    0.243052    0.108162
+min     156.000000    85.000000    8460.000000    0.000000    0.381800
+25%     823.750000   394.750000   44224.000000    0.045750    0.831350
+50%    1152.000000   520.000000   61723.500000    0.125600    0.913150
+75%    1475.250000   668.250000   82347.750000    0.321225    0.966625
+max    5686.000000  1411.000000  167153.000000    0.989300    1.000000
