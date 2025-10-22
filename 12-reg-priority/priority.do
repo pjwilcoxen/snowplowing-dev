@@ -13,8 +13,7 @@ drop if med_inc_1k == .
 
 // Fold the early variable to 3 categories for the ordered probit
 
-gen fold_e = early
-replace fold_e = 1 if fold_e == 2
+replace early = 1 if early == 2
 
 // Build the spatial weighting matrixes 
 
@@ -33,8 +32,8 @@ local srhs priority_fraction mean_grade dangle_fraction shr_poc med_inc_100k
 // Ordered Probit
 //
 
-oprobit fold priority_fraction mean_grade dangle_fraction shr_poc med_inc_100k pct_res, vce(cluster District)
-estimates store v_fold
+oprobit early priority_fraction mean_grade dangle_fraction shr_poc med_inc_100k pct_res, vce(cluster District)
+estimates store v_early
 margins, dydx(*) atmeans
 
 //
@@ -53,6 +52,6 @@ estimates store d25a_s
 
 set linesize 255
 
-estimates table v_fold d25a d25a_s, star stats(N ll bic)
+estimates table v_early d25a d25a_s, star stats(N ll bic)
 
 write_log off

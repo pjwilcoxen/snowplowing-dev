@@ -37,7 +37,7 @@ Running c:\ado\personal\profile.do ...
       name:  <unnamed>
        log:  H:\dropbox\wilcoxen\wk\syracuse\36-pub\dev\12-reg-priority\priority.txt
   log type:  text
- opened on:  19 Jun 2025, 14:00:25
+ opened on:  22 Oct 2025, 14:47:25
 
 . 
 . use sp_syracuse
@@ -51,9 +51,7 @@ Running c:\ado\personal\profile.do ...
 . 
 . // Fold the early variable to 3 categories for the ordered probit
 . 
-. gen fold_e = early
-
-. replace fold_e = 1 if fold_e == 2
+. replace early = 1 if early == 2
 (41 real changes made)
 
 . 
@@ -78,7 +76,7 @@ Running c:\ado\personal\profile.do ...
 . // Ordered Probit
 . //
 . 
-. oprobit fold priority_fraction mean_grade dangle_fraction shr_poc med_inc_100k pct_res, vce(cluster District)
+. oprobit early priority_fraction mean_grade dangle_fraction shr_poc med_inc_100k pct_res, vce(cluster District)
 
 Iteration 0:   log pseudolikelihood = -120.23963  
 Iteration 1:   log pseudolikelihood = -95.904116  
@@ -94,7 +92,7 @@ Log pseudolikelihood =  -95.67519               Pseudo R2         =     0.2043
                                    (Std. Err. adjusted for 12 clusters in District)
 -----------------------------------------------------------------------------------
                   |               Robust
-           fold_e |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+            early |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ------------------+----------------------------------------------------------------
 priority_fraction |   1.413091   1.048862     1.35   0.178    -.6426418    3.468823
        mean_grade |   .4966148   .1247158     3.98   0.000     .2521764    .7410533
@@ -107,7 +105,7 @@ priority_fraction |   1.413091   1.048862     1.35   0.178    -.6426418    3.468
             /cut2 |   1.396167    .590193                      .2394096    2.552924
 -----------------------------------------------------------------------------------
 
-. estimates store v_fold
+. estimates store v_early
 
 . margins, dydx(*) atmeans
 
@@ -115,9 +113,9 @@ Conditional marginal effects                    Number of obs     =        127
 Model VCE    : Robust
 
 dy/dx w.r.t. : priority_fraction mean_grade dangle_fraction shr_poc med_inc_100k pct_res
-1._predict   : Pr(fold_e==0), predict(pr outcome(0))
-2._predict   : Pr(fold_e==1), predict(pr outcome(1))
-3._predict   : Pr(fold_e==3), predict(pr outcome(3))
+1._predict   : Pr(early==0), predict(pr outcome(0))
+2._predict   : Pr(early==1), predict(pr outcome(1))
+3._predict   : Pr(early==3), predict(pr outcome(3))
 at           : priority_f~n    =    .3124848 (mean)
                mean_grade      =    2.258574 (mean)
                dangle_fra~n    =    .0489018 (mean)
@@ -248,12 +246,12 @@ Wald test of spatial terms:          chi2(1) = 13.63      Prob > chi2 = 0.0002
 . set linesize 255
 
 . 
-. estimates table v_fold d25a d25a_s, star stats(N ll bic)
+. estimates table v_early d25a d25a_s, star stats(N ll bic)
 
 --------------------------------------------------------------
-    Variable |    v_fold           d25a           d25a_s      
+    Variable |    v_early          d25a           d25a_s      
 -------------+------------------------------------------------
-fold_e       |
+early        |
 priority_f~n |  1.4130905                                     
   mean_grade |  .49661484***                                  
 dangle_fra~n |  1.1032662                                     
