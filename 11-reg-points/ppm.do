@@ -21,6 +21,8 @@ spmatrix create idistance D, replace
 local phys priority_fraction mean_grade dangle_fraction
 local demo med_inc_100k shr_poc
 
+corr ppm `phys' `demo' pct_res
+
 reg ppm `phys' `demo' pct_res
 estimates store r2v2
 

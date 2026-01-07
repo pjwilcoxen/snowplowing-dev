@@ -1,8 +1,8 @@
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  H:\dropbox\wilcoxen\wk\syracuse\36-pub\dev\11-reg-points\ppm.txt
+       log:  H:\wk\syracuse\36-pub\dev\11-reg-points\ppm.txt
   log type:  text
- opened on:  19 Jun 2025, 13:57:46
+ opened on:  15 Aug 2025, 10:57:17
 
 . write_graph setup ana png noemf
 
@@ -22,6 +22,21 @@
 . local phys priority_fraction mean_grade dangle_fraction
 
 . local demo med_inc_100k shr_poc
+
+. 
+. corr ppm `phys' `demo' pct_res
+(obs=127)
+
+             |      ppm priori~n mean_g~e dangle~n med~100k  shr_poc  pct_res
+-------------+---------------------------------------------------------------
+         ppm |   1.0000
+priority_f~n |   0.2993   1.0000
+  mean_grade |   0.2699   0.0472   1.0000
+dangle_fra~n |   0.0327  -0.1469  -0.0663   1.0000
+med_inc_100k |  -0.1532  -0.1985   0.1937  -0.0662   1.0000
+     shr_poc |  -0.0151   0.0914  -0.2778   0.0389  -0.5319   1.0000
+     pct_res |  -0.0590  -0.4688   0.2166  -0.1844   0.4426  -0.1546   1.0000
+
 
 . 
 . reg ppm `phys' `demo' pct_res
@@ -134,3 +149,5 @@ Statistics   |
 
 . 
 end of do-file
+
+. exit, clear
