@@ -25,11 +25,22 @@ DATE
 Conversion, water to snow:
 21.03448275862069
 
-Hour for 0.25 cutoff:
-34
+Data for 0.01 cutoff:
+    event_hr    accpct       acc
+27        27  0.025862  0.631034
 
-Hour for 0.5 cutoff:
-39
+Data for 0.25 cutoff:
+    event_hr    accpct      acc
+34        34  0.267241  6.52069
 
-Hour for 0.75 cutoff:
-45
+Data for 0.5 cutoff:
+    event_hr    accpct       acc
+39        39  0.517241  12.62069
+
+Data for 0.75 cutoff:
+    event_hr    accpct       acc
+45        45  0.767241  18.72069
+
+Data for 0.99 cutoff:
+    event_hr    accpct        acc
+64        64  0.991379  24.189655

@@ -10,7 +10,7 @@ Input:
 
 Output:
     plot and log file
-    
+
 """
 
 import pandas as pd
@@ -99,9 +99,10 @@ hourly_precip['accpct'] = hourly_precip['acc']/hourly_precip['acc'].max()
 #
 
 ap = hourly_precip['accpct']
-for cut in [0.25, 0.5, 0.75]:
+for cut in [0.01, 0.25, 0.5, 0.75, 0.99]:
     hr = hourly_precip[ ap > cut]['event_hr'].min()
-    ql.log(f'Hour for {cut} cutoff',hr)
+    amt = hourly_precip[ hourly_precip['event_hr']==hr ]
+    ql.log(f'Data for {cut} cutoff',amt[['event_hr','accpct','acc']])
 
 #%%
 #
