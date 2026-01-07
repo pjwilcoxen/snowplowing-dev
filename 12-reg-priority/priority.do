@@ -32,7 +32,7 @@ local srhs priority_fraction mean_grade dangle_fraction shr_poc med_inc_100k
 // Ordered Probit
 //
 
-oprobit early priority_fraction mean_grade dangle_fraction shr_poc med_inc_100k pct_res, vce(cluster District)
+oprobit early priority_fraction mean_grade dangle_fraction shr_poc med_inc_100k pct_res
 estimates store v_early
 margins, dydx(*) atmeans
 
@@ -40,7 +40,7 @@ margins, dydx(*) atmeans
 // Estimating delay on reaching 25% of plowing
 //
 
-reg d25 `srhs' pct_res, vce(cluster District)
+reg d25 `srhs' pct_res
 estimates store d25a
 
 spregress d25 `srhs' pct_res, dvarlag(C) ml
