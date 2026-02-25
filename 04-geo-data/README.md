@@ -1,48 +1,28 @@
 # About these files
 
-## bg_districts_final.csv
-
-`bg_districts_final.csv` is an exported table of block group snowplow districts that we constructed from spatial data in ArcGIS using the following source layers and geoprocessing tools.
-
-### Source Layers
-
-* `SnowPlowDistricts_Final_120618.zip` contains polygon boundaries of snowplow districts in Syracuse City.
-
-* `tl_2018_36_bg.zip` is a Topologically Integrated Geographic Encoding and Referencing (TIGER) file containing the polygon boundaries of census block groups in New York State.
-
-* `tl_2018_36_place.zip` is a TIGER file containing the polygon boundaries of census incorporated places in New York State.
-
-### Geoprocessing Tools
-
-To prepare the original snowplow districts layer (`SnowPlowDistricts_Final_120618.zip`), we put it into a coordinate system suitable for local spatial analysis using Project (Data Management Tools).[^1]  Then we aggregated the parts of the districts at the district level using Dissolve (Data Management Tools).
-
-We prepared the source block group layer by selecting Syracuse from `tl_2018_36_place.zip` and using the output layer to clip `tl_2018_36_bg.zip`. We projected the Syracuse block group layer in same coordinate system as the snowplow districts layer. There are 135 records in the Syracuse block group layer.
-
-We joined the snowplow districts to the block groups using Spatial Join (Analysis Tools) with the Match Option set to Largest overlap. We retained the field `GEOID` from the target, block group layer and the field `District` from the join features, snowplow district layer.[^2]
-
 ## bg_variables_final.csv
 
 `bg_variables_final.csv` is an exported table of block group attributes that we constructed from spatial data in ArcGIS using the following source layers and variable definitions.
 
 ### Source Layers
 
-* `tl_2018_36_bg.zip` is a Topologically Integrated Geographic Encoding and Referencing (TIGER) file containing the polygon boundaries of census block groups in New York State.
+* `tl_2018_36_bg.zip` ([src](https://www2.census.gov/geo/tiger/TIGER2018/BG/)) is a Topologically Integrated Geographic Encoding and Referencing (TIGER) file containing the polygon boundaries of census block groups in New York State.
 
-* `tl_2018_36_place.zip` is a TIGER file containing the polygon boundaries of census incorporated places in New York State.
+* `tl_2018_36_place.zip` ([src](https://www2.census.gov/geo/tiger/TIGER2018/PLACE/)) is a TIGER file containing the polygon boundaries of census incorporated places in New York State.
 
-* `Syracuse_Streeets_2016.zip` is line file of Syracuse City street segments.
+* `Syracuse_Streeets_2016.zip` ([src](https://www.arcgis.com/home/item.html?id=0fd6c18c39a246a490b4e650e19b9991)) is line file of Syracuse City street segments.
 
-* `Emergency_Snow_Routes.zip` is a line file of Syracuse City street segments that are designated emergency.
+* `Emergency_Snow_Routes.zip` ([src](https://data.syr.gov/datasets/2e3cf7dcc42a4db19a320a1655bc149d_0/explore)) is a line file of Syracuse City street segments that are designated emergency.
 
-* `Rush_Hour_Routes.zip` is a line file of Syracuse City street segments that are designated rush hour.
+* `Rush_Hour_Routes.zip` ([src](https://www.arcgis.com/home/item.html?id=964959e783ee4bf4955630e482be1560)) is a line file of Syracuse City street segments that are designated rush hour.
 
-* `Parcel_Map_Q1_2020.zip` is a polygon tax parcel dataset for Syracuse City.
+* `Parcel_Map_Q1_2020.zip` ([src](https://data.syr.gov/datasets/d803ed92173745a9b01c36e4cd5c0975_0/explore)) is a polygon tax parcel dataset for Syracuse City.
 
-* `VW_BRIDGES.gdb` is a point file inventory of bridges in New York State.
+* `VW_BRIDGES.gdb` ([src](https://data.gis.ny.gov/datasets/9e038774ef034c7cae5374f3e23f7a67_0/explore?layer=0&location=0.037236%2C104.151700%2C0.00)) is a point file inventory of bridges in New York State.
 
-* `USGS_13_n43w077_20230227.tif` is a Digital Elevation Model (DEM) raster tile covering the southern portion of Syracuse.
+* `USGS_13_n43w077_20230227.tif` ([src](https://apps.nationalmap.gov/downloader/)) is a Digital Elevation Model (DEM) raster tile covering the southern portion of Syracuse.
 
-* `USGS_13_n44w077_20230227.tif` is a DEM raster tile covering the northern portion of Syracuse.
+* `USGS_13_n44w077_20230227.tif` ([src](https://apps.nationalmap.gov/downloader/)) is a DEM raster tile covering the northern portion of Syracuse.
 
 ### Variables
 
